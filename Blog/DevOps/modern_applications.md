@@ -98,7 +98,7 @@ If you ask this question to 10 people, you will get 10 different answers but cha
 
 ポイント：
 
-- 「なぜ」に答える
+- 「なぜ」に答える（何が課題だったのか）
 - modern application はあくまで手段
 - modern application のメリット
 - modern application の実現方法のベストプラクティス
