@@ -5,11 +5,12 @@
 ### 私の抱いていた誤解
 
 モダンなアプリって実に抽象的だ、と私は思っていた。何がモダンなんだと。
-モダンな家、とか私の大好きなモダンファミリーのモダン。
+モダンな家、とか私の大好きなドラマのモダンファミリーのモダン。
 
 そこで、モダンなアプリとは何かを調べてみた。
 
-> A modern application is `an answer to the slow, ponderous, and long release times of monolithic software` [What are modern applications and what do they mean for you?](https://www.tmaxsoft.com/what-are-modern-applications-and-what-do-they-mean-for-you/#:~:text=A%20modern%20application%20is%20an,(think%20Uber%20or%20Amazon).)
+> A modern application is `an answer to the slow, ponderous, and long release times of monolithic software`</br>
+ [What are modern applications and what do they mean for you?](https://www.tmaxsoft.com/what-are-modern-applications-and-what-do-they-mean-for-you/#:~:text=A%20modern%20application%20is%20an,(think%20Uber%20or%20Amazon).)
 
 驚きだ。「最新の技術を使って...」っという書き方はされていない。今までslowだった開発を解決するための手法ってことだそうだ。ある程度 modern application とは何なのかというのは共通認識としてあるのだということだろう。
 
@@ -26,13 +27,6 @@
 ちなみに、`AWSは、アプリケーションの設計、構築、管理を継続的に見直し、変化を受け入れ続ける開発戦略のことを「モダンアプリケーション」と呼んでいる`とのことだ。
 
 さて、ここできっと Modern applications の何が嬉しいのかと疑問に思うはずなので次のセクションを見て欲しい。
-
-### 補足
-
-> What do you need to build a modern application?</br>
-If you ask this question to 10 people, you will get 10 different answers but chances are high that the common theme will be "technology"....you need to use Containers, Messaging, NoSQL databases etc. 
-
-とあるように、modern application と言ったら色々な回答がある。そりゃそうだろうし、それが私の思っていた疑問だ。何がモダンなのだと。調べていくうちにわかったのが、modern application の特徴ってうのは「ある程度傾向がある」ということと、それを「実現するための方法もいろいろあるがベストプラクティスの提唱がされている」のでみんなそれに倣おうよ、と言った感じの話だということだ。
 
 ## Modern App のメリット
 
@@ -86,6 +80,15 @@ modern application の実現方法は様々だた、共通認識みたいなも�
 
 - modern application では Modular Architecture という各モジュールを分割し疎結合に組み合わせて実現するアーキテクチャを採用
 - Modular Architecture の中にも複数のアーキテクチャがある（例：Monolithic,modular monolith,Microservices）
+
+## 最後に
+
+> What do you need to build a modern application?</br>
+If you ask this question to 10 people, you will get 10 different answers but chances are high that the common theme will be "technology"....you need to use Containers, Messaging, NoSQL databases etc. 
+
+とあるように、modern application と言ったら色々な回答がある。そりゃそうだろうし、それが私の思っていた疑問だ。何がモダンなのだと。調べていくうちにわかったのが、modern application の特徴ってうのは「ある程度傾向がある」ということと、それを「実現するための方法もいろいろあるがベストプラクティスの提唱がされている」のでみんなそれに倣おうよ、と言った感じの話だということだ。
+
+ちなみに、来週 AWS Certified Cloud Practitioner の試験を受けようと思っているが先に modern application についてなぜこれを知る必要があるのが学べてよかったと思う。
 
 ## Ref
 
