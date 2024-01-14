@@ -88,7 +88,20 @@ If you ask this question to 10 people, you will get 10 different answers but cha
 
 とあるように、modern application と言ったら色々な回答がある。そりゃそうだろうし、それが私の思っていた疑問だ。何がモダンなのだと。調べていくうちにわかったのが、modern application の特徴ってうのは「ある程度傾向がある」ということと、それを「実現するための方法もいろいろあるがベストプラクティスの提唱がされている」のでみんなそれに倣おうよ、と言った感じの話だということだ。
 
-ちなみに、来週 AWS Certified Cloud Practitioner の試験を受けようと思っているが先に modern application についてなぜこれを知る必要があるのが学べてよかったと思う。
+ちなみに、来週 AWS Certified Cloud Practitioner の試験を受けようと思っているが先に modern application についてなぜこれを知る必要があるのが学べてよかったと思う。知らないと、なぜこういうテクノロジーがあるのかのモチベーションに共感できない。
+
+## 問題
+
+「modern applicationとはなにですか？」この質問に2分程度で答えなさい。
+
+答えられなければ理解してないぞ..!!
+
+ポイント：
+
+- 「なぜ」に答える
+- modern application はあくまで手段
+- modern application のメリット
+- modern application の実現方法のベストプラクティス
 
 ## Ref
 
