@@ -136,10 +136,10 @@ Serverless visual workflow service for coordinating application components.
 
 == ビジネスアプリケーション
 
-=== Connect (Amazon Connect)
+=== Connect
 Cloud-based contact center service.
 
-=== SES (Amazon Simple Email Service)
+=== SES (Simple Email Service)
 Email sending and receiving service.
 
 == クラウド財務管理
@@ -163,7 +163,7 @@ Online software store for buying and selling software.
 === Batch
 Fully managed batch processing at any scale.
 
-=== EC2 (Amazon Elastic Compute Cloud)
+=== EC2 (Elastic Compute Cloud)
 Virtual servers in the cloud.
 
 === Elastic Beanstalk
@@ -183,13 +183,13 @@ Brings AWS services to the edge of the 5G network.
 
 == コンテナ
 
-=== ECR (Amazon Elastic Container Registry)
+=== ECR (Elastic Container Registry)
 Fully managed container registry.
 
-=== ECS (Amazon Elastic Container Service)
+=== ECS (Elastic Container Service)
 Fully managed container orchestration service.
 
-=== EKS (Amazon Elastic Kubernetes Service)
+=== EKS (Elastic Kubernetes Service)
 Managed Kubernetes service.
 
 == カスタマーエンゲージメント
@@ -200,7 +200,7 @@ Design brand experiences and build personalized marketing campaigns.
 === IQ
 Provide insights from customer behavior data.
 
-=== AMS (Amazon Mobile Analytics)
+=== AMS (Mobile Analytics)
 Provide analytics data on mobile application usage and user interactions.
 
 === AWS Support
@@ -220,7 +220,7 @@ In-memory database service compatible with Redis.
 === Neptune
 Managed graph database service.
 
-=== RDS (Amazon Relational Database Service)
+=== RDS (Relational Database Service)
 Managed relational database service.
 
 == デベロッパーツール
@@ -312,7 +312,7 @@ Application streaming service.
 Virtual desktop service in the cloud.
 
 === WorkSpaces Web
-Web client for accessing Amazon WorkSpaces.
+Web client for accessing WorkSpaces.
 
 == IoT
 
