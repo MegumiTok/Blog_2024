@@ -373,7 +373,7 @@ Creates and manages catalogs of IT services, making it easy for users to deploy 
 === Systems Manager
 Provides operational insights and allows you to take action on AWS resources, facilitating resource management.
 
-=== Trusted Advisor
+=== Trusted Advisor 🍎
 Offers guidance to help follow AWS best practices, improve performance, and save costs.
 
 === Well-Architected Tool
@@ -419,7 +419,7 @@ Improve global application availability and performance.
 === Route 53 🍎
 Scalable domain name system (DNS) web service.
 
-=== VPC (Virtual Private Cloud)
+=== VPC (Virtual Private Cloud) 🍎
 Create isolated sections of the AWS Cloud with customizable network settings.
 
 === VPN (Virtual Private Network)

@@ -14,6 +14,14 @@
 
 ## Spring
 
+## WIP
+
+- [Redundancy (冗長化)](./Blog/DevOps/Redundancy%20_冗長化.md)
+
+- [SRE](./Blog/DevOps/SRE.md)
+
+- [DevOps](./Blog/DevOps/DevOps.md)
+
 ## 個人的なメモ
 
 - プライベート編
