@@ -433,8 +433,8 @@ Access AWS compliance reports and other compliance-related artifacts.
 === Audit Manager
 Automate evidence collection for audits and assessments.
 
-=== ACM (AWS Certificate Manager)
-Provision, manage, and deploy SSL/TLS certificates.
+=== ACM (AWS Certificate Manager) 🍎
+ACM を使用すれば、SSL/TLS 証明書の購入、アップロード、および更新という時間のかかるプロセスを手動で行う必要がなくなります
 
 === CloudHSM
 Safely generate, store, and manage cryptographic keys.
