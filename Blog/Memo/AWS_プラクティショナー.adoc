@@ -7,6 +7,8 @@
 
 = AWS Certified Cloud Practitioner の対策
 
+- 業務でよく見る・触ったことがあるサービス：🍎
+
 == フロントエンドのウェブとモバイル
 
 === Amplify ✅
@@ -125,7 +127,7 @@ Fully managed data warehouse service for analytics.
 === EventBridge
 Event bus service for connecting application data across AWS services.
 
-=== SNS (Simple Notification Service) ✅
+=== SNS (Simple Notification Service) ✅ 🍎
 Fully managed messaging service for application-to-application communication.
 
 === SQS (Simple Queue Service) ✅
@@ -147,7 +149,7 @@ Email sending and receiving service.
 === Billing Conductor
 Automate invoicing and billing tasks.
 
-=== Budgets
+=== Budgets 🍎
 Set custom cost and usage budgets.
 
 === Cost and Usage Report
@@ -163,10 +165,10 @@ Online software store for buying and selling software.
 === Batch
 Fully managed batch processing at any scale.
 
-=== EC2 (Elastic Compute Cloud)
+=== EC2 (Elastic Compute Cloud) 🍎
 Virtual servers in the cloud.
 
-=== Elastic Beanstalk
+=== Elastic Beanstalk 🍎
 Fully managed service for deploying and running applications.
 
 === Lightsail
@@ -183,13 +185,13 @@ Brings AWS services to the edge of the 5G network.
 
 == コンテナ
 
-=== ECR (Elastic Container Registry)
+=== ECR (Elastic Container Registry) 🍎
 Fully managed container registry.
 
 === ECS (Elastic Container Service)
 Fully managed container orchestration service.
 
-=== EKS (Elastic Kubernetes Service)
+=== EKS (Elastic Kubernetes Service) 🍎
 Managed Kubernetes service.
 
 == カスタマーエンゲージメント
@@ -220,7 +222,7 @@ In-memory database service compatible with Redis.
 === Neptune
 Managed graph database service.
 
-=== RDS (Relational Database Service)
+=== RDS (Relational Database Service) 🍎
 Managed relational database service.
 
 == デベロッパーツール
@@ -252,7 +254,7 @@ Managed relational database service.
 | Fully managed build service that compiles source code, runs tests, and produces software packages.
 | Building, testing, and packaging applications without managing build infrastructure.
 
-| CodeCommit
+| CodeCommit 🍎
 | Version control service for hosting secure and scalable Git repositories.
 | Hosting private Git repositories securely in the AWS Cloud.
 
@@ -308,7 +310,7 @@ X-Ray: 分散されたアプリケーションのトレースを提供し、パ�
 === AppStream 2.0
 Application streaming service.
 
-=== WorkSpaces
+=== WorkSpaces 🍎
 Virtual desktop service in the cloud.
 
 === WorkSpaces Web
@@ -335,7 +337,7 @@ Infrastructure as Code (IaC) service for provisioning and managing AWS resources
 === CloudTrail
 Records AWS API calls for your account, providing visibility into resource usage and changes.
 
-=== CloudWatch
+=== CloudWatch 🍎
 Service for monitoring, logging, and obtaining observability into your AWS environment.
 
 === Compute Optimizer
@@ -414,10 +416,10 @@ Establish dedicated network connections from on-premises to AWS.
 === Global Accelerator
 Improve global application availability and performance.
 
-=== Route 53
+=== Route 53 🍎
 Scalable domain name system (DNS) web service.
 
-=== VPC (Amazon Virtual Private Cloud)
+=== VPC (Virtual Private Cloud)
 Create isolated sections of the AWS Cloud with customizable network settings.
 
 === VPN (Virtual Private Network)
@@ -449,7 +451,7 @@ Managed Active Directory service in the AWS Cloud.
 === Firewall Manager
 Centrally configure and manage AWS WAF and Shield Advanced.
 
-=== IAM (AWS Identity and Access Management)
+=== IAM (AWS Identity and Access Management) 🍎
 Securely control access to AWS resources.
 
 === IAM Identity Center (Single Sign-On)
@@ -458,10 +460,10 @@ Secure and simplified access to AWS accounts using single sign-on (SSO).
 === Inspector
 Automated security assessment service.
 
-=== KMS (AWS Key Management Service)
+=== KMS (Key Management Service)
 Centralized key management.
 
-=== Macie (Amazon Macie)
+=== Macie
 Discover, classify, and protect sensitive data.
 
 === Network Firewall
@@ -479,7 +481,7 @@ Centrally view security alerts and compliance status.
 === Shield
 DDoS protection service.
 
-=== WAF (Web Application Firewall)
+=== WAF (Web Application Firewall) 🍎
 Protect web applications from common web exploits.
 
 注意点: IAM is fundamental to security, understand its principles, roles, and permissions. Cognito specializes in managing user identity for applications. 
@@ -489,10 +491,10 @@ Protect web applications from common web exploits.
 === Backup
 Automated backup for data stored on AWS.
 
-=== EBS (Amazon Elastic Block Store)
+=== EBS (Elastic Block Store)
 Block-level storage volumes for EC2 instances.
 
-=== EFS (Amazon Elastic File System)
+=== EFS (Elastic File System)
 Fully managed file storage service for EC2 instances.
 
 === Elastic Disaster Recovery
@@ -501,7 +503,7 @@ Build resilient and scalable disaster recovery solutions.
 === FSx
 Fully managed file storage for Windows and Lustre.
 
-=== S3 (Amazon Simple Storage Service)
+=== S3 (Simple Storage Service) 🍎
 Scalable and highly durable object storage.
 
 === S3 Glacier
