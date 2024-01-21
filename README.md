@@ -4,6 +4,14 @@
 
 - [2024-01-14 What is a modern app?](./Blog/DevOps/modern_applications.md)
 
+- [2024-01-21 アプリケーション開発に集中するための手法の例](./Blog/DevOps/アプリケーション開発に集中するための手法.md)
+
+- [2024-01-21 なぜフルスタックであることが求められるのか](./Blog/DevOps/なぜフルスタックであることが求められるのか.md)
+
+## AWS
+
+- [AWS Certified Cloud Practitioner の対策](./Blog/Memo/AWS_プラクティショナー.adoc)
+
 ## Spring
 
 ## 個人的なメモ

@@ -105,6 +105,6 @@ If you ask this question to 10 people, you will get 10 different answers but cha
 
 ## Ref
 
-- [AWSで実現するモダンアプリケーション入門 〜サーバーレス、コンテナ、マイクロサービスで何ができるのか ](www.amazon.co.jp/dp/4297133261)
+- [AWSで実現するモダンアプリケーション入門 〜Serverless、コンテナ、マイクロサービスで何ができるのか ](www.amazon.co.jp/dp/4297133261)
 
 - [Modern Application - WHY and WHAT](https://www.linkedin.com/pulse/modern-application-why-what-rajeev-sakhuja)

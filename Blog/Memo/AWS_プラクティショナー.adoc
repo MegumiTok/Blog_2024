@@ -1,0 +1,513 @@
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 3
+:sectlinks:
+
+= AWS Certified Cloud Practitioner の対策
+
+== フロントエンドのウェブとモバイル
+
+=== Amplify ✅
+
+==== 問題
+
+開発者がコードを書くことなく、フルスタックのウェブアプリケーションやモバイルアプリケーションの構築を行えるAWSのサービスは何ですか。
+
+==== 解説
+
+必読記事: link:https://qiita.com/t-kigi/items/cd78a2bfbf80dfa1e2ee[]
+
+Amplify には、AWS でフルスタックのウェブアプリやモバイルアプリを構築するために必要なものがすべて揃っています。フロントエンドの構築とホスティング、認証やストレージなどの機能の追加、リアルタイムのデータソースへの接続、デプロイと数百万人のユーザーへの拡張が可能です。
+
+具体的に対応可能なサービスとしては以下のものがある（詳しくは必読記事参照）：
+
+[options="header"]
+|===
+| Amplify Resource Name | できること | AWS Service
+| API (GraphQL) | GraphQL のエンドポイントを作って、CRUD操作を可能にする | AWS AppSync + 
+DynamoDB
+| API (REST) |  | API Gateway +
+ AWS Lambda
+| Auth  |  | Cognito
+| Hosting  |  | S3, CloudFront
+| Storage |  | S3 (+Cognitoによる認証が強制)+
+ DynamoDB
+| Analytics	 |  | Pinpoint
+| Notifications |  | Pinpoint
+| Interactions |  | Lex
+| Predications |  | Rekognition (画像処理) +
+Transcribe (音声->テキスト変換) +
+Polly (テキスト->音声変換) +
+Comprehend (自然言語解析) +
+Translate (翻訳) など
+| XR | 3D、VRやARなどのアプリケーションレンダリングの変換機能を提供 | Sumerian
+|===
+
+Amplify には以下 3 つの構成要素が存在する：
+
+- Amplify CLI
+- Amplify Framework
+- Amplify Console
+
+
+== アプリケーション統合
+
+=== AppSync
+Fully managed service that makes it easy to develop GraphQL APIs.
+
+=== Device Farm
+Mobile app testing service that enables you to test your app on real devices.
+
+注意点: AppSync is focused on GraphQL APIs, while Device Farm is for mobile app testing, covering different aspects of application development.
+
+== ML
+
+=== Comprehend ✅
+Natural Language Processing (NLP) service for analyzing text documents.
+
+=== Kendra ✅
+Enterprise search service that uses machine learning.
+
+=== Lex ✅
+Conversational interface for chatbots.
+
+=== Polly ✅
+Text-to-speech service.
+
+=== Rekognition ✅
+Image and video analysis service.
+
+=== SageMaker ✅
+Fully managed service to build, train, and deploy machine learning models.
+
+=== Textract ✅
+OCR (Optical Character Recognition) service for extracting text from images and documents.
+
+=== Transcribe ✅
+Automatic Speech Recognition (ASR) service for converting speech to text.
+
+=== Translate ✅
+Language translation service.
+
+== 分析
+
+=== Athena ✅
+Querying, analyzing, and visualizing data in Amazon S3 using SQL.
+
+=== Data Exchange
+Easily find, subscribe to, and use third-party data in the cloud.
+
+=== EMR 
+Big Data processing using Apache Hadoop and related tools.
+
+=== Glue ✅
+Extract, transform, and load (ETL) service to prepare data for analysis.
+
+=== Kinesis ✅
+Real-time data streaming for big data analytics.
+
+=== MSK(Amazon Managed Streaming for Apache Kafka) ✅
+Managed Apache Kafka service for real-time data streaming.
+
+=== OpenSearch Service ✅
+Managed Elasticsearch service for search and analytics.
+
+=== QuickSight ✅
+Business Intelligence (BI) service for creating and visualizing dashboards.
+
+=== Redshift ✅
+Fully managed data warehouse service for analytics.
+
+== アプリケーション統合
+
+=== EventBridge
+Event bus service for connecting application data across AWS services.
+
+=== SNS (Simple Notification Service) ✅
+Fully managed messaging service for application-to-application communication.
+
+=== SQS (Simple Queue Service) ✅
+Fully managed message queuing service for decoupling components.
+
+=== Step Functions (AWS Step Functions)
+Serverless visual workflow service for coordinating application components.
+
+== ビジネスアプリケーション
+
+=== Connect (Amazon Connect)
+Cloud-based contact center service.
+
+=== SES (Amazon Simple Email Service)
+Email sending and receiving service.
+
+== クラウド財務管理
+
+=== Billing Conductor
+Automate invoicing and billing tasks.
+
+=== Budgets
+Set custom cost and usage budgets.
+
+=== Cost and Usage Report
+
+=== Cost Explorer
+Cost management and exploration tool.
+
+=== Marketplace
+Online software store for buying and selling software.
+
+== コンピューティング
+
+=== Batch
+Fully managed batch processing at any scale.
+
+=== EC2 (Amazon Elastic Compute Cloud)
+Virtual servers in the cloud.
+
+=== Elastic Beanstalk
+Fully managed service for deploying and running applications.
+
+=== Lightsail
+Easy-to-use virtual private servers (VPS).
+
+=== Local Zones
+AWS infrastructure in geographic proximity to your users.
+
+=== Outposts
+Brings native AWS services, infrastructure, and operating models to your on-premises location.
+
+=== Wavelength
+Brings AWS services to the edge of the 5G network.
+
+== コンテナ
+
+=== ECR (Amazon Elastic Container Registry)
+Fully managed container registry.
+
+=== ECS (Amazon Elastic Container Service)
+Fully managed container orchestration service.
+
+=== EKS (Amazon Elastic Kubernetes Service)
+Managed Kubernetes service.
+
+== カスタマーエンゲージメント
+
+=== Activate
+Design brand experiences and build personalized marketing campaigns.
+
+=== IQ
+Provide insights from customer behavior data.
+
+=== AMS (Amazon Mobile Analytics)
+Provide analytics data on mobile application usage and user interactions.
+
+=== AWS Support
+Offer 24/7 technical support and troubleshooting assistance.
+
+== DB
+
+=== Aurora
+High-performance relational database service.
+
+=== DynamoDB
+NoSQL database service.
+
+=== MemoryDB for Redis
+In-memory database service compatible with Redis.
+
+=== Neptune
+Managed graph database service.
+
+=== RDS (Amazon Relational Database Service)
+Managed relational database service.
+
+== デベロッパーツール
+
+|===
+| Developer Tool | Description | Main Use Case
+
+| Config
+| Service for assessing, auditing, and evaluating configurations of AWS resources.
+| Ensure AWS resource configurations comply with organizational policies.
+
+| CLI (Command Line Interface)
+| Command-line tool for interacting with AWS services and managing resources.
+| Quick and scriptable access to AWS services for automation and administration.
+
+| Cloud9
+| Cloud-based integrated development environment (IDE) that allows collaborative coding.
+| Collaborative coding, debugging, and development in a cloud-based environment.
+
+| CloudShell
+| Browser-based shell provided by AWS for managing resources and executing commands.
+| Command-line access to AWS resources directly from the AWS Management Console.
+
+| CodeArtifact
+| Artifact repository service for storing and sharing software packages.
+| Centralized storage for managing and sharing software packages across teams.
+
+| CodeBuild
+| Fully managed build service that compiles source code, runs tests, and produces software packages.
+| Building, testing, and packaging applications without managing build infrastructure.
+
+| CodeCommit
+| Version control service for hosting secure and scalable Git repositories.
+| Hosting private Git repositories securely in the AWS Cloud.
+
+| CodeDeploy
+| Automates code deployments to a variety of compute services, making the process easier and more consistent.
+| Automating application deployments to compute services like EC2, Lambda, and more.
+
+| CodePipeline
+| Continuous integration and continuous delivery (CI/CD) service for automating the software release process.
+| Automating the end-to-end software release process with visual workflows.
+
+| CodeStar
+| Fully managed service for developing, building, and deploying applications on AWS.
+| Simplifying the entire development lifecycle with an integrated environment.
+
+| X-Ray
+| Distributed tracing service that helps analyze and debug applications by providing insights into performance bottlenecks and errors.
+| Analyzing and debugging distributed applications for performance optimization.
+
+|===
+
+
+=== CodeBuildとCodeDeploy
+
+CodeBuild: コードのビルドに特化しており、ソースコードからビルドアーティファクトを生成します。
+
+CodeDeploy: アプリケーションのデプロイに焦点を当て、異なるコンピューティングサービスへのアプリケーションのデプロイを自動化します。
+
+注意点: CodeBuildはビルド、CodeDeployはデプロイに特化しているので、それぞれの役割を理解することが重要です。
+
+=== CodeCommitとCodeArtifact
+
+CodeCommit, プライベートでセキュアな Git リポジトリを提供します.
+
+CodeArtifact, パッケージの保存、検索、共有を容易にするためのソフトウェアパッケージのリポジトリです.
+
+注意点: CodeCommitはGitリポジトリのホスティングに焦点があり、CodeArtifactはソフトウェアパッケージの管理に特化しています.
+
+=== CodeStar
+
+CodeStar: アプリケーション開発において、コードの作成からデプロイまでの完全な開発ライフサイクルを管理します。
+
+注意点: CodeStarは複数のDeveloper Toolsを統合したサービスで、コードの開発からデプロイまでを包括的に扱います。
+
+=== X-Ray:
+
+X-Ray: 分散されたアプリケーションのトレースを提供し、パフォーマンスの問題やエラーを解析・デバッグします。
+
+注意点: X-Rayはアプリケーションのトレースとデバッグに特化しています。他のサービスとは異なる利用目的です。
+
+== エンドユーザーコンピューティング
+
+=== AppStream 2.0
+Application streaming service.
+
+=== WorkSpaces
+Virtual desktop service in the cloud.
+
+=== WorkSpaces Web
+Web client for accessing Amazon WorkSpaces.
+
+== IoT
+
+=== IoT Core
+Fully managed service for connecting, managing, and securely interacting with IoT devices at scale.
+
+=== IoT Greengrass
+Brings local compute, messaging, and machine learning capabilities to edge devices.
+
+AWS Cloudの機能を"grassroots"またはエッジに拡張することを意味し、ローカルな処理とインテリジェンスに焦点を当てています。
+
+== マネジメントとガバナンス
+
+=== Auto Scaling
+Automatically adjust the number of compute resources to maintain performance and optimize costs.
+
+=== CloudFormation
+Infrastructure as Code (IaC) service for provisioning and managing AWS resources.
+
+=== CloudTrail
+Records AWS API calls for your account, providing visibility into resource usage and changes.
+
+=== CloudWatch
+Service for monitoring, logging, and obtaining observability into your AWS environment.
+
+=== Compute Optimizer
+Analyzes resource utilization and recommends optimal AWS resources to improve performance and reduce costs.
+
+=== Config
+Assesses, audits, and evaluates the configurations of your AWS resources to ensure compliance.
+
+=== Control Tower
+Sets up and governs a secure, multi-account AWS environment, enforcing best practices.
+
+=== Dashboard
+A visual interface that provides an overview of your AWS resources and their status.
+
+=== Launch Wizard
+Guides you through the setup of AWS resources for specific use cases, ensuring best practices.
+
+=== License Manager
+Manages software licenses and enforces licensing rules to ensure compliance.
+
+=== マネジメントコンソール
+Web-based interface for accessing and managing AWS resources and services.
+
+=== Organizations
+Enables central management and governance of multiple AWS accounts.
+
+=== Resource Groups
+Organizes and manages AWS resources based on criteria to simplify operations.
+
+=== Service Catalog
+Creates and manages catalogs of IT services, making it easy for users to deploy approved resources.
+
+=== Systems Manager
+Provides operational insights and allows you to take action on AWS resources, facilitating resource management.
+
+=== Trusted Advisor
+Offers guidance to help follow AWS best practices, improve performance, and save costs.
+
+=== Well-Architected Tool
+Assesses workloads against AWS Well-Architected Framework principles, providing recommendations for improvement.
+
+== 移行と転送
+
+=== Application Discovery Service
+Discover, inventory, and assess on-premises applications for migration.
+
+=== Application Migration Service
+Migrate applications to AWS, simplifying the migration process.
+
+=== Database Migration Service
+Migrate databases to AWS, supporting homogenous and heterogenous migrations.
+
+=== Migration Hub
+Monitor and track the progress of application migrations.
+
+=== SCT (Schema Conversion Tool)
+Convert database schema and code for various database engines during migration.
+
+=== Snow Family
+Physically transport large amounts of data to AWS using Snowball or Snowmobile.
+
+=== Transfer Family
+Securely transfer files to and from Amazon S3 using SFTP, FTPS, or SCP.
+
+== ネットワークとコンテンツ配信
+
+=== API Gateway
+Create, publish, and manage APIs.
+
+=== CloudFront
+Content delivery network (CDN) service for fast and secure content delivery.
+
+=== Direct Connect
+Establish dedicated network connections from on-premises to AWS.
+
+=== Global Accelerator
+Improve global application availability and performance.
+
+=== Route 53
+Scalable domain name system (DNS) web service.
+
+=== VPC (Amazon Virtual Private Cloud)
+Create isolated sections of the AWS Cloud with customizable network settings.
+
+=== VPN (Virtual Private Network)
+Securely connect on-premises networks to AWS using encrypted VPN connections.
+
+== セキュリティ、アイデンティティ、コンプライアンス
+
+=== Artifact
+Access AWS compliance reports and other compliance-related artifacts.
+
+=== Audit Manager
+Automate evidence collection for audits and assessments.
+
+=== ACM (AWS Certificate Manager)
+Provision, manage, and deploy SSL/TLS certificates.
+
+=== CloudHSM
+Safely generate, store, and manage cryptographic keys.
+
+=== Cognito
+Identity management service for applications, supporting user authentication and authorization.
+
+=== Detective
+Investigate and hunt for security issues.
+
+=== Directory Service
+Managed Active Directory service in the AWS Cloud.
+
+=== Firewall Manager
+Centrally configure and manage AWS WAF and Shield Advanced.
+
+=== IAM (AWS Identity and Access Management)
+Securely control access to AWS resources.
+
+=== IAM Identity Center (Single Sign-On)
+Secure and simplified access to AWS accounts using single sign-on (SSO).
+
+=== Inspector
+Automated security assessment service.
+
+=== KMS (AWS Key Management Service)
+Centralized key management.
+
+=== Macie (Amazon Macie)
+Discover, classify, and protect sensitive data.
+
+=== Network Firewall
+Managed firewall service.
+
+=== RAM (Resource Access Manager)
+Share AWS resources across AWS accounts.
+
+=== Secrets Manager
+Rotate, manage, and retrieve sensitive information like database credentials and API keys.
+
+=== Security Hub
+Centrally view security alerts and compliance status.
+
+=== Shield
+DDoS protection service.
+
+=== WAF (Web Application Firewall)
+Protect web applications from common web exploits.
+
+注意点: IAM is fundamental to security, understand its principles, roles, and permissions. Cognito specializes in managing user identity for applications. 
+
+== ストレージ
+
+=== Backup
+Automated backup for data stored on AWS.
+
+=== EBS (Amazon Elastic Block Store)
+Block-level storage volumes for EC2 instances.
+
+=== EFS (Amazon Elastic File System)
+Fully managed file storage service for EC2 instances.
+
+=== Elastic Disaster Recovery
+Build resilient and scalable disaster recovery solutions.
+
+=== FSx
+Fully managed file storage for Windows and Lustre.
+
+=== S3 (Amazon Simple Storage Service)
+Scalable and highly durable object storage.
+
+=== S3 Glacier
+Low-cost archive storage for infrequently accessed data.
+
+=== Storage Gateway
+Hybrid cloud storage service connecting on-premises environments to AWS storage services.
+
+注意点: Understand the use cases and performance characteristics of EBS, EFS, and S3. S3 is a fundamental storage service suitable for various workloads.
