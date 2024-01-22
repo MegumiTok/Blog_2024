@@ -101,17 +101,34 @@ Querying, analyzing, and visualizing data in Amazon S3 using SQL.
 === Data Exchange
 Easily find, subscribe to, and use third-party data in the cloud.
 
-=== EMR 
-Big Data processing using Apache Hadoop and related tools.
-
 === Glue ✅
 Extract, transform, and load (ETL) service to prepare data for analysis.
 
 === Kinesis ✅
 Real-time data streaming for big data analytics.
 
-=== MSK(Amazon Managed Streaming for Apache Kafka) ✅
+4つのサービスの総称:
+- Kinesis Data Streams (KDS)
+- Kinesis Data Firehose (KDF)
+- Kinesis Data Analytics (KDA)
+- Kinesis Video Streams
+
+=== KDS (Kinesis Data Streams)
+
+=== EMR 
+Big Data processing using Apache Hadoop and related tools.
+
+[[初心者] EMRとは何ですか](https://dev.classmethod.jp/articles/beginner-what-is-emr-overview/)
+
+- 分散ストリーム処理に対応しているのが SQS の場合 Lambda のみ
+- KDS は KDA/EMR/Lambda が分散ストリーム処理に対応
+
+=== MSK(Managed Streaming for Apache Kafka) ✅
 Managed Apache Kafka service for real-time data streaming.
+
+「Apache Kafkaでストリームデータを受け、Amazon S3に永続化」というデータの貯め方が定石手法
+
+Apache Kafka はストリーム処理エンジン：[AWSのストリーム処理向けメッセージングサービスKDS(Kinesis)・MSK(Kafka)・SQSの特徴](https://qiita.com/sigmalist/items/1a65b0b0456516e2056b)
 
 === OpenSearch Service ✅
 Managed Elasticsearch service for search and analytics.

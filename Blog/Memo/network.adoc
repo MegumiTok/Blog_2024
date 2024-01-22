@@ -1,0 +1,193 @@
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 3
+:sectlinks:
+
+= ネットワーク関係
+
+== OSI model 
+[options="header"]
+.OSI model 
+|===
+3+|Layer|PDU |Function | e.g.
+
+.4+|Host layers
+|7 |Application .3+^.^|Data| 個々のアプリケーション |HTTP.
+|6 | Presentation | データの表現形式 |HTML
+|5|	Session | 通信手段 |HTTPS
+|4|Transport |Segment, Datagram|エンド間の通信制御 |TCP,UDP
+
+.4+|Media layers
+|3 | Network| Packet| データを送る相手を決め
+最適な経路で送信 |IP
+|2 | 	Data link | Frame| 	Transmission of data frames between two nodes connected by a physical layer | Ethernet
+|1| Physical| Bit, Symbol| 	Transmission and reception of raw bit streams over a physical medium | UTPケーブル、光ファイバーケーブル
+
+|===
+
+== IPアドレスを確認
+
+プライベートIPアドレス::
+通常はルーターのDHCPという仕組みによって、自動的にローカルIPアドレスが割り当てられている
+
+[source,shell]
+----
+#相手のグローバルIPアドレス確認
+$ ping -c 3 msn.com
+$ nslookup amazon.co.jp
+
+#自分のグローバルIPアドレス確認
+$ curl ipecho.net/plain; echo
+
+#プライベートIPアドレス「192.168.x.x」確認
+$ ifconfig
+----
+
+=== nslookup
+* DNSサーバーと通信して``名前解決``の正引きと逆引きができる
+* エヌエスルックアップ
+* DNSサーバーに問い合わせができるコマンド
+
+=== curl
+* cURL, which stands for client URL, is a command line tool that developers use to transfer data to and from a server. 
+
+=== ifconfig
+* network interface configuration
+
+[source,shell]
+----
+# オプション無しで実行すると、仮想NIを表示
+ifconfig
+
+# Ethernetだけ表示
+ifconfig | grep ether
+
+# list just the names
+ifconfig -l
+----
+
+
+== デフォルトゲートウェイの確認
+
+=== netstat
+[source,shell]
+----
+#ターミナルからルーティングテーブルを見る
+$ netstat -rn | more
+Routing tables
+
+Internet:
+Destination        Gateway            Flags           Netif Expire
+default            192.168.13.99      UGScg             en0 //<-----
+----
+*  `| more` をつけると表示が一画面ずつになるので便利
+
+lsof か netstat を使用することで、特定のポートが、使用中かどうか確認できる
+[source,shell]
+----
+netstat -p tcp | wc -l
+
+#ポート8080が使用中か確認する場合
+netstat -an | grep 8080
+
+# 上記のコマンドより結果が返ってくるのが遅かった（なぜだろう）
+netstat -p tcp | grep 8080
+----
+-nオプションを組み合わせると、コンピュータ名やサービス名を使わずにIPアドレスやポート番号で実行結果を表示する
+
+
+== lsof
+* lsof(エルエスオーエフ) : LiSt Open Files
+* 「プロセスが開いているファイル」を表示するコマンド
+* `-i:ポート番号`
+
+[source,shell]
+----
+#ポート8080が使用中か確認する場合 
+$ lsof -i :8080 
+OR
+$ netstat -an | grep 8080
+
+# 上記のコマンドでPIDを確認できるので
+# 実行中のプロセスを終了させる(-9は強制終了オプション)
+$ kill -9 <確認したPID>
+----
+
+== SSH
+* SSH（Secure Shell）
+* 暗号や認証の技術を利用して、安全にリモートコンピュータと通信するためのプロトコル
+* パスワード認証型(非推進)
+** パスワード認証型だと、第三者に何らかの方法で「ユーザ名」と「パスワード」に知られてしまうと、簡単に自由にアクセスされてしまう
+* 公開鍵認証型
+** ① 自分で「秘密鍵&公開鍵ペア」を作成し、秘密鍵はしかる場所へ配置。
+** ② ローカルホストの「公開鍵」のみを、リモートホストのしかるべきところに配置登録（コピー）
+** 例えば、GitHubにSSH接続する際には、登録されている公開鍵を用いて、接続主が誰であるかということがチェックされます。これにより、自分に成りすました誰か別の人がGitHubに接続して勝手に自分のリポジトリを操作するようなことを防ぐことができる
+
+
+
+== ネットワークにつながらない時
+
+=== ping応答による原因の切り分け
+
+[source,shell]
+----
+# 応答を要求するメッセージを3回送る
+ping -c 3 8.8.8.8
+
+# ループバックアドレスにPING
+ping -c 3 127.0.0.1
+
+# -tオプションで強制終了させるまでpingが継続
+ping -t www.monyo.com
+----
+
+- 8.8.8.8はGoogleが運用する公開DNSサーバのIPアドレス
+- pingのpはパケット
+- -cオプション:pingの回数(カウント)を設定する(とりまネットに繋がってるかどうかをみるだけなら三回でpingを止めていいと思う)
+- -tを付けることで、``[Ctrl]＋[C]``で強制終了させるまで継続してpingコマンドが実行されます。デフォルトでは4回で終了してしまいますが、傾向を見る上では数十秒位続けた方がよいでしょう。
+
+サーバをIPアドレスで指定した場合と名前で指定した場合との応答を見比べることをお勧めします。名前でアクセスした時に初回の応答までにちょっと間が空くという場合は、ネットワークの問題ではなく、名前をIPアドレスに変換する名前解決機構の問題であると推測できます。
+
+URLで応答が無くても、ブラウザ上部のアドレス欄に　`https://124.83.183.243`　と、手でIPアドレスを入力して、Yahoo!のホームページ が開いた場合、DNSに問題が発生している可能性があります。
+`ping www.yahoo.co.jp` は通らないが、`ping 124.83.183.243` は通る場合、インターネットには接続できています。
+
+インターネットの接続ができているにもかかわらずホームページが表示されない場合は、ブラウザーのキャッシュやDNSが原因になっていることが多い。
+
+論理的に接続されているにもかかわらず、ホームページが見れないといった場合は、セキュリティソフトなどの設定により、80番ポートへの通信を拒否設定しているとか、ブラウザの故障などが考えられます（トランスポート層、アプリケーション層の問題）。
+
+=== PCとルータが通信可能かどうかを確認する方法
+
+`arp -a` コマンドでarpテーブルにルータのIPアドレスやMACアドレスが表示されるなら、ルータと通信可能
+
+=== もしかしてTCPの接続の問題？
+TCPのコネクション数を確認してみる
+
+[source,shell]
+----
+$ netstat -p tcp | wc -l
+273
+----
+
+netstatでできること::
+* ネットワークの統計情報の表示
+* 不正な通信を見極める
+
+-p <Protocol>:: 
+指定されたプロトコルの接続を示します。
+
+
+=== 他の可能性
+==== ARPキャッシュ
+
+[source,shell]
+----
+# ARPキャッシュの状態確認
+$ arp -a
+----
+
+
+
+
+

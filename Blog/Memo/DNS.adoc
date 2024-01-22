@@ -1,0 +1,169 @@
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 3
+:sectlinks:
+
+= DNS record types
+
+[options="header"]
+.OSI model 
+|===
+|タイプ|略語|説明 
+|A|Address| IPｖ4でホスト名とIPアドレスの関連づけを定義
+|NS|nameserver|a DNS record that contains the name of the authoritative name server within a domain or DNS zone
+|CNAME|Canonical Name | Aレコードの別名を定義するレコード
+|MX|Mail exchanger  |ドメインあてに来た電子メールの配送先(メールサーバー)を割り当てるために使用するレコード
+|TXT|Text |TXT レコードには、外部ネットワーク サーバーとサービスがドメインから送信されたメールを処理するのに役立つ情報が含まれています
+|===
+
+== A Record 
+
+- Aレコードは、Domain Name System（DNS）において最も一般的に使用されるレコードタイプの一つ
+- これは、ドメイン名（例えば、www.example.com）を、そのサーバーの対応するIPv4アドレス（例えば、192.0.2.1）に関連付ける役割を果たす
+- Aレコードは「DNS解決」の中心的な部分を担っています
+- ウェブブラウザや他のクライアントが特定のドメイン名を解決しようとすると、DNSサーバーは対応するAレコードを検索します
+- そのAレコードが指し示すIPアドレスに基づいて、クライアントはそのサーバーと通信することができます
+
+例えば、あなたがウェブブラウザで「www.example.com」を検索すると、ブラウザはまずDNSサーバーに対して「www.example.com」のAレコードを問い合わせます。DNSサーバーはそのAレコードを見つけ、対応するIPアドレス（例えば、192.0.2.1）をブラウザに返します。ブラウザはそのIPアドレスを使って「www.example.com」のサーバーに接続し、ウェブページを取得します。
+
+[source,shell]
+----
+dig nintendo.co.jp A
+
+;; ANSWER SECTION:
+nintendo.co.jp.		300	IN	A	76.223.57.182
+nintendo.co.jp.		300	IN	A	13.248.184.86
+----
+
+nintendo.co.jp. は TTL が 300秒で IP アドレスが「13.248.184.86」もしくは「76.223.57.182」であることがわかります。
+
+== AAAA Record 
+- Quad A Record
+- "AAAA"はIPv6アドレスがIPv4アドレスの4倍の長さ（128ビット対32ビット）であることを示しています
+- AAAAレコードは、基本的にはAレコードと同じ役割を果たしますが、IPv6アドレス（例：2001:0db8:85a3:0000:0000:8a2e:0370:7334）にドメイン名をマッピングします
+
+== NS Record
+
+[source,shell]
+.Aリソースレコードまで再帰的に解決してくれます
+----
+dig nintendo.co.jp NS
+
+;; ANSWER SECTION:
+nintendo.co.jp.         378     IN      NS      ns-1938.awsdns-50.co.uk.
+nintendo.co.jp.         378     IN      NS      ns-742.awsdns-28.net.
+nintendo.co.jp.         378     IN      NS      ns-1222.awsdns-24.org.
+nintendo.co.jp.         378     IN      NS      ns-19.awsdns-02.com.
+
+;; ADDITIONAL SECTION:
+ns-1222.awsdns-24.org.  14423   IN      A       205.251.196.198
+ns-1222.awsdns-24.org.  23276   IN      AAAA    2600:9000:5304:c600::1
+ns-19.awsdns-02.com.    10988   IN      A       205.251.192.19
+ns-19.awsdns-02.com.    21202   IN      AAAA    2600:9000:5300:1300::1
+ns-1938.awsdns-50.co.uk. 12257  IN      A       205.251.199.146
+ns-1938.awsdns-50.co.uk. 22747  IN      AAAA    2600:9000:5307:9200::1
+ns-742.awsdns-28.net.   13447   IN      A       205.251.194.230
+ns-742.awsdns-28.net.   32166   IN      AAAA    2600:9000:5302:e600::
+----
+
+- nintendo.co.jp. ドメインは、４つの権威 DNS サーバーで管理されていることがわかります
+- もちろん、権威 DNS サーバー自体の Aリソースレコードもあります
+- nintendo.co.jpのドメインネームシステム(DNS)はAmazon Web Services(AWS)のRoute 53を使用していることがわかります。
+
+"NS"レコードは、ドメインのDNSサーバーを指定します。ここでは、nintendo.co.jpのNSレコードがawsdnsという名前を含むサーバーを指しているので、これはAWSのDNSサービスであるRoute 53が使用されていることを示しています
+
+
+== CNAMEレコード（Canonical Name Record）
+
+- 「Canonical Name」は「正規名」を意味します
+- つまり、CNAMEレコードは一つのドメイン名（エイリアス）を「正規」のドメイン名にマッピングします
+
+[source,shell]
+.Aリソースレコードまで再帰的に解決してくれます
+----
+dig www.nintendo.co.jp
+;; ANSWER SECTION:
+www.nintendo.co.jp.	300	IN	CNAME	www.nintendo.co.jp.edgekey.net.
+www.nintendo.co.jp.edgekey.net.	187 IN	CNAME	e5192.b.akamaiedge.net.
+e5192.b.akamaiedge.net.	20	IN	A	184.26.241.185
+----
+
+以下の３つは全て同じという意味です
+
+- www.nintendo.co.jp.
+- www.nintendo.co.jp.edgekey.net.
+- e5192.b.akamaiedge.net.
+
+== MX Record(Mail exchanger record)
+
+- 特定のドメイン宛ての電子メールをどのメールサーバーに転送すればいいかを指定するレコードで
+- A DNS 'mail exchange' (MX) record directs email to a mail server
+- The MX record indicates how email messages should be routed in accordance with the Simple Mail Transfer Protocol (SMTP, the standard protocol for all email). 
+- Like CNAME records, an MX record must always point to another domain.
+
+ドメインの MXリソースレコードは、以下のコマンドで名前解決可能です。
+
+[source,shell]
+----
+dig nintendo.co.jp MX
+;; ANSWER SECTION:
+nintendo.co.jp.		300	IN	MX	10 mxb-0039de01.gslb.pphosted.com.
+nintendo.co.jp.		300	IN	MX	10 mxa-0039de01.gslb.pphosted.com.
+----
+上記は xxx@nintendo.co.jp 宛のメールを、以下のメールサーバーで処理するという意味です。
+
+- **10** mxa-0039de01.gslb.pphosted.com
+- **10** mxb-0039de01.gslb.pphosted.com
+
+== TXT レコード
+
+- 好きにコメントが書けるレコード
+- 特定の書式でコメントを書くことで特別な意味を持たせるといった使い方をされることも多い
+- TXT レコードには、外部ネットワーク サーバーとサービスがドメインから送信されたメールを処理するのに役立つ情報が含まれています
+- Google と Gmail は、DNS TXT レコードを使用して、ドメインの所有権の確認、メールのセキュリティの確保、迷惑メールやフィッシングの防止を行います
+
+Google Workspace または Google Cloud のアカウントを設定する際、ドメインの設定に追加する TXT レコードが Google から提供されます。TXT レコードが追加されたことを Google が検出すると、ドメインの所有権が確認されます。詳しくは、TXT レコードでドメインを保護するをご覧ください。
+
+=== SPFレコード
+- A sender policy framework (SPF) 
+
+メールの送信側から出す「こーゆーところからメールが行くから。それ以外はインチキだから」を伝えるための情報。
+
+----
+IN TXT "v=spf1 ip4:198.51.100.1 ~all"
+----
+「198.51.100.1から送られたメールは真っ当に送られたメールだよ、それ以外から送られたメールはインチキだよ」という意味になる。
+
+== 権威 DNS
+=== Route53
+- Route53は権威DNSです
+- 権威DNSとは、ドメイン名とIPアドレスの変換情報を保持しているDNSのことで、変換情報を保持していないDNS（キャシュDNS）と区別するときに使います
+- Route53は権威DNSなので、保持しているドメイン名以外の名前解決をリクエストしても応答しません
+- キャッシュDNSは、別に用意する必要があります。
+
+== キャッシュDNS(再帰的 DNS)
+- クライアントから権威 DNS サービスに直接クエリが行うのではなく、リゾルバーと呼ばれる別のタイプの DNS サービスである 再帰的 DNS サービスに接続されます
+- 再帰的 DNS サービスはホテルのコンシェルジュのような働きをします
+- DNS レコードは保有しませんが、ユーザーの代わりに DNS 情報を入手できる中間証明書として機能
+
+image:./images/dns_01.png[width=500]
+
+1. A user opens a web browser, enters www.example.com in the address bar, and presses Enter.
+
+2. The request for www.example.com is routed to a DNS resolver, which is typically managed by the user's Internet service provider (ISP), such as a cable Internet provider, a DSL broadband provider, or a corporate network.
+
+3. The DNS resolver for the ISP forwards the request for www.example.com to a DNS root name server.
+
+4. The DNS resolver for the ISP forwards the request for www.example.com again, this time to one of the TLD name servers for .com domains. The name server for .com domains responds to the request with the names of the four Amazon Route 53 name servers that are associated with the example.com domain.
+
+5. The DNS resolver for the ISP chooses an Amazon Route 53 name server and forwards the request for www.example.com to that name server.
+
+6. The Amazon Route 53 name server looks in the example.com hosted zone for the www.example.com record, gets the associated value, such as the IP address for a web server, 192.0.2.44, and returns the IP address to the DNS resolver.
+
+7. The DNS resolver for the ISP finally has the IP address that the user needs. The resolver returns that value to the web browser. The DNS resolver also caches (stores) the IP address for example.com for an amount of time that you specify so that it can respond more quickly the next time someone browses to example.com. For more information, see time to live (TTL).
+
+8. The web browser sends a request for www.example.com to the IP address that it got from the DNS resolver. This is where your content is, for example, a web server running on an Amazon EC2 instance or an Amazon S3 bucket that's configured as a website endpoint.
+
+9. The web server or other resource at 192.0.2.44 returns the web page for www.example.com to the web browser, and the web browser displays the page.

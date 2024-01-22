@@ -1,0 +1,384 @@
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 3
+:sectlinks:
+
+= コマンド
+
+[source,shell]
+----
+# print working directory
+pwd
+
+source ~/.zshrc
+
+# 現在のシェルの確認
+echo $SHELL
+----
+
+
+[source,shell]
+----
+# 作業用ディレクトリの作成
+mkdir linux-study
+
+# 必要なファイルの準備
+touch Dockerfile docker-compose.yml
+----
+
+== カーソルの移動
+
+|=======================
+2+|コマンド|説明
+.4+|移動 
+| Control + B |Backward
+| Control + F |Forward 
+| Control + A |挿入ポイントを行の先頭に移動する 
+| Control + E |挿入ポイントを行の末尾に移動する 
+.3+|削除 
+| Control + U |カーソル位置から行のUP(頭)まで削除
+| Control + K |カーソル位置から行のお尻まで削除
+| Control + W |前の単語の先頭まで削除する ⭐️
+| Control + Y |最後に削除した内容を挿入する
+| Control + L |プロンプトが文字化けしているときこのコマンド
+|=======================
+
+== プロンプト
+
+|=======================
+|$ .2+^.^|一般ユーザー     |`bash`、sh, ksh
+|%      |`zsh`、tcsh、csh
+|#   |rootユーザー    |
+|=======================
+
+
+
+== シェルを一時的切り替える
+
+```sh
+sh
+
+bash
+
+zsh
+```
+
+== man
+* --helpオプションを使うのとほぼ同じ
+* Linux のことは``man``コマンドでオンラインマニュアルを読むと便利
+[source,shell]
+.例
+----
+# ls コマンドのマニュアル
+$ man ls
+
+# man 自体のマニュアルは
+$ man man
+----
+
+== ls
+[source,shell]
+.例
+----
+# 名前がaから始まるものだけ表示
+ls a*
+
+# ドットファイルも含めて表示
+ls -a
+
+# ファイル名や属性もわかる。 - ならば通常ファイル、 d ならばディレクトリ
+ls -l
+
+# ファイル名がわかる
+ls -F
+
+# ホームディレクトリ下でzshという単語が含まれるものだけ表示
+ls -a ~/ | grep -w zsh
+
+# shが含まれるものだけ表示
+ls -a ~/ | grep -F "sh"
+----
+
+=== ls /
+* ls /の「/」は「ルート（最上位のパス）
+[source,shell]
+----
+% ls /
+Applications    System          Volumes         cores           etc             opt             sbin            usr
+Library         Users           bin             dev             home            private         tmp             var
+----
+* `/opt` は optional の略
+
+=== ls -F
+* ファイルの種類がわかる
+
+|=======================
+|種類|記号     
+|通常ファイル   |なし
+|ディレクトリ   |/
+|実行可能ファイル   |*
+|シンボリックリンク   |@
+|=======================
+
+
+== ディレクトリを作成
+
+[source,shell]
+.例
+----
+# 作業用ディレクトリの作成
+mkdir linux-study
+----
+
+== ファイルを作成
+[source,shell]
+.例
+----
+#  .zshrc ファイルを作成
+touch .zshrc
+
+# 特定の行だけ検索した方がかしこい。
+ls -a | grep zshrc
+
+# 複数のファイルを作成
+touch itc1.txt itc2.txt itc3.txt
+----
+
+== テキスト操作
+
+=== echo
+
+キーボード(標準入力)で入力したデータをディスプレイ(標準出力)に出力する
+[source,shell]
+----
+# 現在のログインシェルを確認
+$ echo $SHELL
+
+# echoは標準入力を標準出力に返す
+$ echo {}> .prettierrc.json
+{}
+
+# ファイルに書き出す
+#  > はファイルを上書きする
+# hoge.txt がなければ作られる
+$ echo Hello, > hoge.txt 
+
+
+# 上記のファイルに追記したい場合には
+$ echo How are you? >> hoge.txt
+$ cat hoge.txt
+Hello,
+How are you?
+
+# asdfのパスを通す時に打ったコマンド
+$ echo -e "\n. $(brew --prefix asdf)/libexec/asdf.sh" >> ~/.zshrc 
+----
+`-eオプション`::
+echoコマンドの文字列でエスケープ文字を利用できるようになる。
+
+`\n`::
+エスケープ文字。改行。
+
+ログインシェル::
+ログイン時に最初に起動されるシェル
+
+参考::
+ヒアドキュメント：`cat << EOF > ファイル`
+
+=== cat
+ファイルの中身を標準出力に出力してくれるコマンド
+[source,shell]
+.例
+----
+#ファイルの内容を表示する
+$ cat cat.txt
+
+# 出力は標準出力なので、リダイレクト「>」で別のファイルに出力内容を記述できる
+$ cat fileA > fileB
+
+# 上書きではなく、追加がしたければ「>>」
+# この例は元のbash設定をzshに写している
+$ cat ~/.bash_profile >> ~/.zprofile
+----
+
+=== less
+* cat コマンドは単にファイルの内容をそのまま表示するだけだか、長い行数の時は less を使うと一画面ごとに表示できて、上下にスクロールできる
+
+* 終了するときはq
+
+* ファイルない検索はファイル表示中に `/` を入力すると画面の一番下の行が、検索文字列の入力欄に変わる
+
+
+[source,shell]
+.例
+----
+# ターミナルからルーティングテーブルを見る
+$ netstat -rn | more
+Routing tables
+
+Internet:
+Destination        Gateway            Flags           Netif Expire
+default            192.168.13.99      UGScg             en0 //<-----
+----
+
+=== tail
+* ファイルの最終行から数行を表示するコマンド
+* 標準では１０行を表示する。
+
+[source,shell]
+.例
+----
+# -nオプション：出力する行数を指定する
+tail -n 行数 ファイル名
+
+# ファイルflag.phpの最終行2行を表示
+tail -n 2 flag.php
+----
+
+=== head
+上記のtailの逆
+
+=== wc
+[source,shell]
+.例
+----
+# ファイルの文字数/単語数/行数を表示
+wc
+
+# ファイルの大きさを確認
+wc n1.txt
+
+# wc -l: 行数だけ表示する
+netstat -p tcp | wc -l
+----
+
+== プロセスの管理
+
+=== ps
+
+[source,shell]
+.例
+----
+# 自分が現在起動しているプロセスを表示
+ps
+----
+
+=== kill
+指定したプロセスを終了させる
+
+[source,shell]
+.例
+----
+# ポート8080が使用中か確認する場合 
+$ lsof -i :8080 
+OR
+$ netstat -an | grep 8080
+
+# 上記のコマンドでPIDを確認できるので
+# -9は強制終了オプション)
+$ kill -9 <確認したPID>
+----
+
+== ユーザーの管理
+=== su
+* `su <変身したいユーザー>`
+* 変身したいユーザーを指定しない場合は、rootユーザーになる。
+* 変身しようとするユーザーのパスワードが必要。
+* rootユーザーから他のユーザーに変身する際は、パスワード不要。
+
+◆ suが存在する理由
+
+rootは何でもできちゃうスーパーユーザー。サーバーなんかにrootでいきなりログインしようとすると、パスワードが読み取られちゃう危険があるそうな。つまりは、知らない人がrootで入ってきてぐちゃぐちゃにする危険性がある。そこで、suの存在意義が発揮される。
+
+まず、一般ユーザーで接続・ログイン後、suをつかってrootになれば、接続時にrootのパスが漏れるという上記の危険を防ぐことができる。
+
+=== sudo
+* `sudo <実行したいコマンド>`
+* sudoを実行するユーザーのパスワードが必要
+* ルートユーザを有効にする代わりに、ターミナルで `sudo` コマンドを使った方が安全
+
+
+== grep
+* global regular expression print
+* ファイル全体から/正規表現に一致する行を/表示する
+
+[source,shell]
+.例
+----
+# 単語単位で検索する <-- 便利
+grep -w video
+
+# work ディレクトリ内のファイルすべての中から a という文字を検索する場合
+grep a work/*
+
+# and（なおかつ）
+grep 検索文字列 ファイル名 | grep 検索文字列2
+
+# workディレクトリ内のファイルすべての中からrではじまってpで終わる部分のある行を検索
+grep r.*p work/*
+----
+
+== Finderを使ってファイル名を検索
+
+「find」というコマンドを使用する方法がありますが、 MacのSpotlightまたはFinderウインドウで検索する方が簡易的。
+
+[source,shell]
+----
+find 検索開始ディレクトリ　検索条件　アクション
+----
+
+== which
+whichはファイルやディレクトリを検索するのではなく、コマンドの実体がどこにあるかを調べるものです。
+
+[source,shell]
+----
+% which ruby
+% which bash
+----
+
+== make
+FOSS(free and open-source software)のソースコードにはインストールの手順も付属していて、そこには大体の場合、次のように書いてあります。
+[source,shell]
+.例
+----
+$ ./configure
+$ make
+$ sudo make install
+----
+* それぞれ1行目から、設定、ビルド、インストールを実行するコマンド
+* Makefileは、ビルドツールであるmakeコマンドに実行させたい手順を記述したテキストファイル
+
+[source,shell]
+.例
+----
+# ビルドに必要なコンパイラやライブラリ等の環境のチェックが行われ, Makefile等が作成される
+$ ./configure --prefix=install_dir
+
+# ライブラリ等のビルド
+$ make
+
+# ライブラリが install_dir/lib に, ミニアプリが install_dir/bin に置かれる
+$ make install
+----
+
+`./configure {任意のオプション}`::
+* インストール環境を調査し、それを前提として Makefile ファイルを作成（編集）する。
+* もちろん、指定したオプションも Makefile に反映される。
+* configure スクリプトファイルを実行する際、オプションを指定することで、生成する実行ファイルの特性を変更することができます
+** ---prefix : デフォルトは ``---prefix=/usr/local/``. ライブラリ等のインストールを行うディレクトリツリーを指定する.
+
+make::
+* Makefile を利用してコンパイルを実行する。
+* 言い換えると、実行ファイル等が生成される。
+
+make install::
+生成したファイルを、適切なパスにコピーする等。
+
+
+== ./foo
+* UNIX系のOSではそのファイルまでの絶対パスまたは相対パスを書くことでそのファイルを実行できる
+* なので、たとえばfooというプログラムを実行するには `./foo` とすることで同じディレクトリ上にいれば相対パスでファイルを実行できる
+* パスとは関係なく、カレントディレクトリにあるプログラムを実行するには、フルパスでプログラム名を指定すればいい
+* PATHに登録されていたらファイル名だけでは実行できる

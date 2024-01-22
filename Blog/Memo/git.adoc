@@ -1,0 +1,72 @@
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 3
+:sectlinks:
+
+= Git
+
+== ブランチを作り忘れた時
+
+- 途中からブランチを作成して、そこで作業を再開する方法
+- まだコミットしていない場合は `git co -b new_branch` だけでOK
+
+=== git stash
+
+[source,shell]
+----
+# 現在のワークツリーを一時的に保存
+git stash
+
+# stashに保存されている状態のリストを確認
+git stash list
+
+git co -b new_branch
+
+# 保存した状態(stash@{0})を現在のブランチに適用
+git stash pop
+
+# 実行後に適用した状態は削除されるので削除したくない場合は
+git stash apply
+----
+
+== 過去のコミット一覧を見る
+
+=== git reflog 
+- うっかりブランチを削除したけど元に戻したい時
+- reflogがあれば大丈夫。ブランチは復元できます。
+- 無名ブランチでコミットしたあと、別ブランチチェックアウトして消えちゃった場合も同様
+
+== コミットメッセージを修正
+
+[source,shell]
+----
+git commit --amend
+----
+
+== 余計なファイル(フォルダ)をコミットしたけどやっぱignoreしたい時
+
+[source,shell]
+----
+# 現在追跡されていないファイル、フォルダの確認
+git status --ignored
+
+# コミット済みのファイルをリポジトリから消す
+git rm --cached <ファイル名>
+OR
+git rm --cached -r docker/
+
+# 続いてgitignoreに追記
+----
+
+- `gitignore` は、「git add 実行時に、新規にステージングしない」ためのファイルです。これが仕様ですので、すでに追跡が開始しているファイルは、gitignore に追記しただけでは、反映されません。
+- `-r` (or --recursive): Recursively removes files and directories. This is needed to remove all the files and directories inside the docker/ directory.
+
+== Undo 'git add' before commit
+
+[source,shell]
+----
+# git addしたもののうち example.txtだけ取り消し
+git reset HEAD example.txt
+----

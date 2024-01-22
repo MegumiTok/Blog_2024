@@ -1,0 +1,63 @@
+= 雑多
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 3
+:sectlinks:
+
+
+== How do I exit root mode in terminal?
+
+`[Ctrl] - [D]`
+[source,shell]
+----
+# シェルの確認
+echo $SHELL
+
+# 変更可能なシェルの確認
+cat /etc/shells
+
+# 使用するターミナルのシェルを変更する
+exec bash -l
+Or
+exec bash --login
+----
+
+== ポート8080が使用中か確認する
+
+[source,shell]
+----
+#ポート8080が使用中か確認する場合 
+$ lsof -i :8080 
+
+# 上記のコマンドでPIDを確認できるので
+# 実行中のプロセスを終了させる(-9は強制終了オプション)
+$ kill -9 <確認したPID>
+----
+
+== ping応答をみる
+
+[source,shell]
+----
+# 応答を要求するメッセージを3回送る
+ping -c 3 8.8.8.8
+----
+
+== `telnet localhost <port>` vs `lsof -i :<port>`
+
+The commands `telnet localhost <port>` and `lsof -i :<port>` serve different purposes and operate at different layers of the network stack.
+
+1. `telnet localhost <port>`:
+   - `telnet` is a network protocol and command-line tool used for establishing a remote terminal session.
+   - When you run `telnet localhost <port>`, it attempts to connect to the specified port on the local machine (localhost) using the Telnet protocol.
+   - If the connection is successful, it means that the port is open and actively listening for incoming Telnet connections. It indicates that a service is running on that port and can accept Telnet connections.
+   - This command specifically checks if the Telnet service is available on the specified port. It does not provide information about other services or protocols running on the port.
+
+2. `lsof -i :<port>`:
+   - `lsof` stands for "list open files" and is a command-line utility used to list information about files and processes that have them open.
+   - When you run `lsof -i :<port>`, it queries the operating system to retrieve information about any open network connections associated with the specified port.
+   - It provides a comprehensive view of all processes, network connections, and associated files that are actively using the specified port, regardless of the protocol (TCP, UDP, etc.).
+   - This command allows you to check if any process is currently using the specified port, providing more detailed information about the process and the files associated with it.
+
+In summary, `telnet localhost <port>` checks if the Telnet service is available on the specified port, while `lsof -i :<port>` provides a broader view of all processes and network connections associated with the port, regardless of the protocol.
