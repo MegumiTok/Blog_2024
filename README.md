@@ -14,6 +14,15 @@
 
 ## Spring
 
+## 雑多
+
+- [shortcut集](./Blog/Memo/shortcut.adoc)
+- [Linux](./Blog/Memo/linux.adoc)
+- [Network](./Blog/Memo/network.adoc)
+- [Git](./Blog/Memo/git.adoc)
+- [DNS周りの基礎](./Blog/Memo/DNS.adoc)
+- [環境設定](./Blog/Memo/env.adoc)
+
 ## WIP
 
 - [Redundancy (冗長化)](./Blog/DevOps/Redundancy%20_冗長化.md)
