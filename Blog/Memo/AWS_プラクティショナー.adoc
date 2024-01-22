@@ -53,6 +53,55 @@ Amplify には以下 3 つの構成要素が存在する：
 - Amplify Framework
 - Amplify Console
 
+== AWSでストリームデータを扱うためのメッセージングサービス
+
+- 必読ブログ：[AWSでストリームデータを扱うためのメッセージングサービス](https://qiita.com/sigmalist/items/73d3feeb6e0f5905ed64)
+
+> AWSでストリーム処理を実現する際は、データをキューイングするメッセージングサービスと、キューイングしたデータをストリーム処理するサービスを組み合わせることが一般的（KDS,MSK,SQS）
+
+> ストリーム処理システムでは一般的に、メッセージングサービスでストリームデータをキューイングしてから、ストリーム処理を行います。
+
+=== MSK(Managed Streaming for Apache Kafka) ✅
+Managed Apache Kafka service for real-time data streaming.
+
+- オープンソースであるApache Kafkaのマネージドサービス
+
+- 大量のストリーミングデータを扱うメッセージキューのデファクトスタンダード
+
+- 「Apache Kafkaでストリームデータを受け、Amazon S3に永続化」というデータの貯め方が定石手法
+
+- 機能的にはKDSと似ており、大量のストリーミングデータを扱う場合に使用
+
+> 似てるところも多いけど、違いで重要なのは信頼性とパフォーマンスのトレードオフってところかなー。Kinesisは信頼性、Kafkaはパフォーマンス重視とのこと
+
+> KinesisとKafkaの違いは大きくはAWSのなかだけでなんとかしたいか、によると思うんですよね。stream処理を自分で実装したいとかKafka Connenctみたいに多様なデータハブにしたいってなるとKafka一択だし。分散方法もアプリケーション側で操作できるのもKafkaの方がいいなぁ。
+
+- Apache Kafka はストリーム処理エンジン：[AWSのストリーム処理向けメッセージングサービスKDS(Kinesis)・MSK(Kafka)・SQSの特徴](https://qiita.com/sigmalist/items/1a65b0b0456516e2056b)
+
+=== Kinesis ✅
+Real-time data streaming for big data analytics.
+
+4つのサービスの総称:
+
+- Kinesis Data Streams (KDS)
+- Kinesis Data Firehose (KDF)
+- Kinesis Data Analytics (KDA)
+- Kinesis Video Streams
+
+=== KDS (Kinesis Data Streams) 
+
+- 分散メッセージキューのマネージドサービス
+- 書き込み/読み出し性能をスケールアウトできるため、大量のストリームデータを扱える
+
+> AWSの様々なサービスと連携することが可能です。対応するストリーム処理サービスには以下のようなものがあります。
+
+- Kinesis Data Analytics (KDA: SQL/Javaによるストリーム処理が可能)
+- AWS EMR (Spark Streamingによるストリーム処理が可能)
+- AWS Lambda (イベント駆動型の処理が可能
+
+=== SQS (Simple Queue Service) ✅
+Fully managed message queuing service for decoupling components.
+
 
 == アプリケーション統合
 
@@ -104,17 +153,6 @@ Easily find, subscribe to, and use third-party data in the cloud.
 === Glue ✅
 Extract, transform, and load (ETL) service to prepare data for analysis.
 
-=== Kinesis ✅
-Real-time data streaming for big data analytics.
-
-4つのサービスの総称:
-- Kinesis Data Streams (KDS)
-- Kinesis Data Firehose (KDF)
-- Kinesis Data Analytics (KDA)
-- Kinesis Video Streams
-
-=== KDS (Kinesis Data Streams)
-
 === EMR 
 Big Data processing using Apache Hadoop and related tools.
 
@@ -122,13 +160,6 @@ Big Data processing using Apache Hadoop and related tools.
 
 - 分散ストリーム処理に対応しているのが SQS の場合 Lambda のみ
 - KDS は KDA/EMR/Lambda が分散ストリーム処理に対応
-
-=== MSK(Managed Streaming for Apache Kafka) ✅
-Managed Apache Kafka service for real-time data streaming.
-
-「Apache Kafkaでストリームデータを受け、Amazon S3に永続化」というデータの貯め方が定石手法
-
-Apache Kafka はストリーム処理エンジン：[AWSのストリーム処理向けメッセージングサービスKDS(Kinesis)・MSK(Kafka)・SQSの特徴](https://qiita.com/sigmalist/items/1a65b0b0456516e2056b)
 
 === OpenSearch Service ✅
 Managed Elasticsearch service for search and analytics.
@@ -146,9 +177,6 @@ Event bus service for connecting application data across AWS services.
 
 === SNS (Simple Notification Service) ✅ 🍎
 Fully managed messaging service for application-to-application communication.
-
-=== SQS (Simple Queue Service) ✅
-Fully managed message queuing service for decoupling components.
 
 === Step Functions (AWS Step Functions)
 Serverless visual workflow service for coordinating application components.
@@ -182,7 +210,7 @@ Online software store for buying and selling software.
 === Batch
 Fully managed batch processing at any scale.
 
-=== EC2 (Elastic Compute Cloud) 🍎
+=== EC2 (Elastic Compute Cloud) ✅ 🍎
 Virtual servers in the cloud.
 
 === Elastic Beanstalk 🍎
@@ -197,18 +225,18 @@ AWS infrastructure in geographic proximity to your users.
 === Outposts
 Brings native AWS services, infrastructure, and operating models to your on-premises location.
 
-=== Wavelength
+=== Wavelength ✅
 Brings AWS services to the edge of the 5G network.
 
 == コンテナ
 
-=== ECR (Elastic Container Registry) 🍎
+=== ECR (Elastic Container Registry) ✅🍎
 Fully managed container registry.
 
-=== ECS (Elastic Container Service)
+=== ECS (Elastic Container Service) ✅
 Fully managed container orchestration service.
 
-=== EKS (Elastic Kubernetes Service) 🍎
+=== EKS (Elastic Kubernetes Service) ✅🍎
 Managed Kubernetes service.
 
 == カスタマーエンゲージメント
@@ -216,30 +244,30 @@ Managed Kubernetes service.
 === Activate
 Design brand experiences and build personalized marketing campaigns.
 
-=== IQ
+=== IQ ✅
 Provide insights from customer behavior data.
 
 === AMS (Mobile Analytics)
 Provide analytics data on mobile application usage and user interactions.
 
-=== AWS Support
+=== AWS Support ✅
 Offer 24/7 technical support and troubleshooting assistance.
 
 == DB
 
-=== Aurora
+=== Aurora ✅
 High-performance relational database service.
 
-=== DynamoDB
+=== DynamoDB ✅
 NoSQL database service.
 
 === MemoryDB for Redis
 In-memory database service compatible with Redis.
 
-=== Neptune
+=== Neptune ✅
 Managed graph database service.
 
-=== RDS (Relational Database Service) 🍎
+=== RDS (Relational Database Service) ✅🍎
 Managed relational database service.
 
 == デベロッパーツール
@@ -316,7 +344,7 @@ CodeStar: アプリケーション開発において、コードの作成から�
 
 注意点: CodeStarは複数のDeveloper Toolsを統合したサービスで、コードの開発からデプロイまでを包括的に扱います。
 
-=== X-Ray:
+=== X-Ray: ✅
 
 X-Ray: 分散されたアプリケーションのトレースを提供し、パフォーマンスの問題やエラーを解析・デバッグします。
 
@@ -351,22 +379,22 @@ Automatically adjust the number of compute resources to maintain performance and
 === CloudFormation
 Infrastructure as Code (IaC) service for provisioning and managing AWS resources.
 
-=== CloudTrail
+=== CloudTrail ✅
 Records AWS API calls for your account, providing visibility into resource usage and changes.
 
 === CloudWatch 🍎
 Service for monitoring, logging, and obtaining observability into your AWS environment.
 
-=== Compute Optimizer
+=== Compute Optimizer 
 Analyzes resource utilization and recommends optimal AWS resources to improve performance and reduce costs.
 
-=== Config
+=== Config 
 Assesses, audits, and evaluates the configurations of your AWS resources to ensure compliance.
 
-=== Control Tower
+=== Control Tower ✅
 Sets up and governs a secure, multi-account AWS environment, enforcing best practices.
 
-=== Dashboard
+=== Dashboard ✅
 A visual interface that provides an overview of your AWS resources and their status.
 
 === Launch Wizard
@@ -393,7 +421,7 @@ Provides operational insights and allows you to take action on AWS resources, fa
 === Trusted Advisor 🍎
 Offers guidance to help follow AWS best practices, improve performance, and save costs.
 
-=== Well-Architected Tool
+=== Well-Architected Tool ✅
 Assesses workloads against AWS Well-Architected Framework principles, providing recommendations for improvement.
 
 == 移行と転送
@@ -421,7 +449,7 @@ Securely transfer files to and from Amazon S3 using SFTP, FTPS, or SCP.
 
 == ネットワークとコンテンツ配信
 
-=== API Gateway
+=== API Gateway ✅
 Create, publish, and manage APIs.
 
 === CloudFront
@@ -456,7 +484,7 @@ ACM を使用すれば、SSL/TLS 証明書の購入、アップロード、お�
 === CloudHSM
 Safely generate, store, and manage cryptographic keys.
 
-=== Cognito
+=== Cognito ✅
 Identity management service for applications, supporting user authentication and authorization.
 
 === Detective
@@ -480,7 +508,7 @@ Automated security assessment service.
 === KMS (Key Management Service)
 Centralized key management.
 
-=== Macie
+=== Macie ✅
 Discover, classify, and protect sensitive data.
 
 === Network Firewall
@@ -495,7 +523,7 @@ Rotate, manage, and retrieve sensitive information like database credentials and
 === Security Hub
 Centrally view security alerts and compliance status.
 
-=== Shield
+=== Shield ✅
 DDoS protection service.
 
 === WAF (Web Application Firewall) 🍎
@@ -520,10 +548,10 @@ Build resilient and scalable disaster recovery solutions.
 === FSx
 Fully managed file storage for Windows and Lustre.
 
-=== S3 (Simple Storage Service) 🍎
+=== S3 (Simple Storage Service) 🍎✅
 Scalable and highly durable object storage.
 
-=== S3 Glacier
+=== S3 Glacier ✅
 Low-cost archive storage for infrequently accessed data.
 
 === Storage Gateway
