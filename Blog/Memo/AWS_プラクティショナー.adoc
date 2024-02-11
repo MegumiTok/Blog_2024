@@ -102,6 +102,7 @@ Real-time data streaming for big data analytics.
 === SQS (Simple Queue Service) ✅
 Fully managed message queuing service for decoupling components.
 
+> AWS X-Ray を使って、Amazon Simple Queue Service (SQS) を通過したメッセージをトレースできるようになりました。AWS X-Ray を使うと、分散アプリケーションやマイクロサービスアーキテクチャにおけるパフォーマンス上の問題やエラーを、簡単にトラブルシューティングできます。 
 
 == アプリケーション統合
 
@@ -111,12 +112,12 @@ Fully managed service that makes it easy to develop GraphQL APIs.
 === Device Farm
 Mobile app testing service that enables you to test your app on real devices.
 
-注意点: AppSync is focused on GraphQL APIs, while Device Farm is for mobile app testing, covering different aspects of application development.
-
 == ML
 
 === Comprehend ✅
 Natural Language Processing (NLP) service for analyzing text documents.
+
+Comprehendは、与えられたテキストデータを理解し、その中からさまざまな情報を抽出するための機械学習（Machine Learning, ML）アルゴリズムを使用しています。
 
 === Kendra ✅
 Enterprise search service that uses machine learning.
@@ -131,6 +132,7 @@ Text-to-speech service.
 Image and video analysis service.
 
 === SageMaker ✅
+
 Fully managed service to build, train, and deploy machine learning models.
 
 === Textract ✅
@@ -148,10 +150,16 @@ Language translation service.
 Querying, analyzing, and visualizing data in Amazon S3 using SQL.
 
 === Data Exchange
-Easily find, subscribe to, and use third-party data in the cloud.
+AWSで世界中に大量に存在するさまざまなサードパーティデータをサブスクリプション方式で使用できるようにするサービス
 
 === Glue ✅
 Extract, transform, and load (ETL) service to prepare data for analysis.
+
+データソースから取り込んだデータをETLジョブで加工し、ターゲットに格納して分析などに利用します。
+
+image::./image/ 001.png[Glueの概念図]
+
+https://qiita.com/minorun365/items/11b1b04d741a081118be[AWS Glueとは何か？]
 
 === EMR 
 Big Data processing using Apache Hadoop and related tools.
@@ -379,8 +387,16 @@ Automatically adjust the number of compute resources to maintain performance and
 === CloudFormation
 Infrastructure as Code (IaC) service for provisioning and managing AWS resources.
 
-=== CloudTrail ✅
+=== CloudTrail ✅ 🍎
 Records AWS API calls for your account, providing visibility into resource usage and changes.
+
+- ベント履歴の操作
+- AWS では、CloudTrail はデフォルトで有効
+- [イベント履歴] ページを閲覧すると、CloudTrail コンソールで、AWS アカウント におけるリソース (IAM ユーザー、Amazon EC2 インスタンスなど) の作成、変更、削除に関連するイベントを、リージョン単位で検索できます。
+
+> AWS CloudTrail を使用した Amazon Route 53 API コールのログ記録
+
+> CloudTrail は、アカウントを作成すると AWS アカウントで有効になります。Route 53 でアクティビティが発生すると、そのアクティビティは他の AWS サービスイベントと共に、[Event history (イベント履歴)] 内で CloudTrail イベントに記録されます。
 
 === CloudWatch 🍎
 Service for monitoring, logging, and obtaining observability into your AWS environment.
